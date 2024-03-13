@@ -1,0 +1,120 @@
+<div *ngIf="viewMode; else editable">
+  <div *ngIf="currentVM.vmid">
+    <h4>Virtual Machine ({{currentVM.vmid}})</h4>
+    <table class="table table-striped">
+      <tbody>
+        <tr>
+          <th scope="row">Vmid:</th>
+          <td>{{ currentVM.vmid }}</td>
+        </tr>
+        <tr>
+          <th scope="row">Host Name:</th>
+          <td>{{ currentVM.hostname }}</td>
+        </tr>
+        <tr>
+          <th scope="row">Ip Address:</th>
+          <td>{{ currentVM.ipAddress }}</td>
+        </tr>
+        <tr>
+          <th scope="row">Power State:</th>
+          <td>{{ currentVM.powerState }}</td>
+        </tr>
+        <tr>
+          <th scope="row">Checked In:</th>
+          <td>{{ currentVM.checkedIn }}</td>
+        </tr>
+        <tr>
+          <th scope="row">Username:</th>
+          <td>{{ currentVM.username }}</td>
+        </tr>
+        <tr>
+          <th scope="row">Avd Host:</th>
+          <td>{{ currentVM.avdHost }}</td>
+        </tr>
+        <tr>
+          <th scope="row">Create Date:</th>
+          <td>{{ currentVM.createDate }}</td>
+        </tr>
+        <tr>
+          <th scope="row">Last Update Date:</th>
+          <td>{{ currentVM.lastUpdateDate }}</td>
+        </tr>
+      </tbody>
+    </table>
+    
+    <div class="button-container">
+    <a class="btn btn-secondary" routerLink="/vms/{{ currentVM.vmid }}">
+      Edit
+    </a>
+    </div>
+  </div>
+  <div *ngIf="!currentVM">
+    <br />
+    <p>Please click on a Virtual Machine...</p>
+  </div>
+</div>
+
+<ng-template #editable>
+  <div *ngIf="currentVM.vmid" class="edit-form">
+    <h4>Virtual Machine ({{currentVM.vmid}})</h4>
+    <form>
+      <div class="form-group">
+        <label for="vmid">Vmid</label>
+        <input type="text" readonly class="form-control" id="vmid" [(ngModel)]="currentVM.vmid" name="vmid" />
+      </div>
+      <div class="form-group">
+        <label for="hostname">Host Name</label>
+        <input type="text" class="form-control" id="hostname" [(ngModel)]="currentVM.hostname" name="hostname" />
+      </div>
+      <div class="form-group">
+        <label for="ipAddress">Ip Address</label>
+        <input type="text" class="form-control" id="ipAddress" [(ngModel)]="currentVM.ipAddress" name="ipAddress" />
+      </div>
+      <div class="form-group">
+        <label for="powerState">Power State</label>
+        <input type="text" class="form-control" id="powerState" [(ngModel)]="currentVM.powerState" name="powerState" />
+      </div>
+      <div class="form-group">
+        <label for="checkedIn">Checked In</label>
+        <input type="text" class="form-control" id="checkedIn" [(ngModel)]="currentVM.checkedIn" name="checkedIn" />
+      </div>
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" class="form-control" id="username" [(ngModel)]="currentVM.username" name="username" />
+      </div>
+      <div class="form-group">
+        <label for="avdHost">Avd Host</label>
+        <input type="text" class="form-control" id="avdHost" [(ngModel)]="currentVM.avdHost" name="avdHost" />
+      </div>
+      <div class="form-group">
+        <label for="createDate">Create Date</label>
+        <input type="text" readonly class="form-control" id="createDate" [(ngModel)]="currentVM.createDate"
+          name="createDate" />
+      </div>
+      <div class="form-group">
+        <label for="lastUpdateDate">Last Update Date</label>
+        <input type="text" readonly class="form-control" id="lastUpdateDate" [(ngModel)]="currentVM.lastUpdateDate"
+          name="lastUpdateDate" title="lastUpdateDate" />
+      </div>
+      <div class="form-group">
+        <label for="description">Description</label>
+        <textarea class="form-control" id="description" [(ngModel)]="currentVM.description"
+          name="description"></textarea>
+      </div>
+    </form>
+    <div class="button-container">
+      <button type="submit" class="btn btn-success mr-2" (click)="updateVM()">
+        Update
+      </button>
+      <button class="btn btn-danger mr-2" (click)="deleteVM()">
+        Delete
+      </button>
+    </div>
+    <p>{{ message }}</p>
+  </div>
+
+  <div *ngIf="!currentVM.vmid">
+    <br />
+    <p>Cannot access this Virtual Machine...</p>
+  </div>
+</ng-template>

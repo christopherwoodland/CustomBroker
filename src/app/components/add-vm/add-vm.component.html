@@ -1,0 +1,53 @@
+<div>
+  <div class="submit-form">
+    <div *ngIf="!submitted">
+      <div class="form-group">
+        <label for="hostname">Host Name</label>
+        <input type="text" class="form-control" id="hostname" required [(ngModel)]="vm.hostname" name="hostname" />
+      </div>
+      <div class="form-group">
+        <label for="ipAddress">IP Address</label>
+        <input type="text" class="form-control" id="ipAddress" required [(ngModel)]="vm.ipAddress" name="ipAddress" />
+      </div>
+      <div class="form-group">
+        <label for="powerState">Power State</label>
+        <input type="text" class="form-control" id="powerState" required [(ngModel)]="vm.powerState"
+          name="powerState" />
+      </div>
+      <div class="form-group">
+        <label for="checkedIn">Checked In</label>
+        <input type="text" class="form-control" id="checkedIn" required [(ngModel)]="vm.checkedIn" name="checkedIn" />
+      </div>
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" class="form-control" id="username" required [(ngModel)]="vm.username" name="username" />
+      </div>
+      <div class="form-group">
+        <label for="avdHost">Avd Host</label>
+        <input type="text" class="form-control" id="avdHost" required [(ngModel)]="vm.avdHost" name="avdHost" />
+      </div>
+      <div class="form-group">
+        <label for="createDate">Create Date</label>
+        <input type="text" readonly class="form-control" id="createDate" createDate [(ngModel)]="vm.createDate"
+          name="createDate" />
+      </div>
+      <div class="form-group">
+        <label for="lastUpdateDate">Last Update Date</label>
+        <input type="text" readonly class="form-control" id="lastUpdateDate" required [(ngModel)]="vm.lastUpdateDate"
+          name="lastUpdateDate" />
+      </div>
+      <div class="form-group">
+        <label for="description">description</label>
+        <textarea class="form-control" id="description" required [(ngModel)]="vm.description"
+          name="description"></textarea>
+      </div>
+      <div class="button-container">
+      <button (click)="saveVM()" class="btn btn-success">Submit</button>
+    </div>
+    </div>
+    <div *ngIf="submitted">
+      <h4>Virtual Machine was Submitted Successfully!</h4>
+      <button class="btn btn-success" (click)="newVM()">Add Another Virtual Machine</button>
+    </div>
+  </div>
+</div>

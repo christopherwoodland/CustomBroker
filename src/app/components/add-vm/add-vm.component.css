@@ -1,0 +1,12 @@
+.submit-form {
+  max-width: 900px;
+  margin: auto;
+}
+
+.button-container {
+  display: flex;
+}
+
+.button-container .btn {
+  flex: 1;
+}
