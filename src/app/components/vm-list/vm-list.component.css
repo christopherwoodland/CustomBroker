@@ -11,3 +11,9 @@
 .button-container .btn {
   flex: 1;
 }
+
+.active {
+  background: #D3d3d3;
+  opacity: 1;
+
+}
