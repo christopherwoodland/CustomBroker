@@ -21,7 +21,7 @@
     <h4>Virtual Machines</h4>
     <ul class="list-group">
       <li class="list-group-item"
-        *ngFor="let vm of virtualMachines ?? [] | paginate: { itemsPerPage: 5, currentPage: page }; let i=index"
+        *ngFor="let vm of virtualMachines ?? [] | paginate: { itemsPerPage: 4, currentPage: page }; let i=index"
         [class.active]="i == currentIndex" (click)="setActiveVM(vm, i)">
         <div class="table-responsive">
           <table class="table table-striped">

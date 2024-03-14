@@ -92,7 +92,7 @@ export class VMDetailsComponent implements OnInit {
           this.toastr.success('This Virtual Machine was updated successfully!');
         },
         complete: () => {
-          this.toastr.success(`The Virtual Machine was updated successfully!`);
+          //this.toastr.success(`The Virtual Machine was updated successfully!`);
         },
         error: (e) => {
           console.error(e);
@@ -135,19 +135,19 @@ export class VMDetailsComponent implements OnInit {
   }
 
   deleteVM(): void {
-    this.confirmBox();
+    //this.confirmBox();
 
-    // this.vmService.delete(this.currentVM.vmid)
-    //   .subscribe({
-    //     next: (res) => {
-    //       console.log(res);
-    //       this.toastr.success('The Virtual Machine was removed successfully!');
-    //       this.router.navigate(['/vms']);
-    //     },
-    //     error: (e) => {
-    //       console.error(e);
-    //       this.toastr.error(`An error occurred while removing the Virtual Machine.`);
-    //     }
-    //   });
+    this.vmService.delete(this.currentVM.vmid)
+      .subscribe({
+        next: (res) => {
+          console.log(res);
+          this.toastr.success('The Virtual Machine was removed successfully!');
+          this.router.navigate(['/vms']);
+        },
+        error: (e) => {
+          console.error(e);
+          this.toastr.error(`An error occurred while removing the Virtual Machine.`);
+        }
+      });
   }
 }
