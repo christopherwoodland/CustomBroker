@@ -1,7 +1,11 @@
 .button-container {
-    display: flex;
-  }
-  
-  .button-container .btn {
-    flex: 1;
-  }
+  display: flex;
+}
+
+.button-container .btn {
+  flex: 1;
+}
+
+.call-to-action {
+  color: #fff;
+}

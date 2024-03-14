@@ -20,8 +20,9 @@
   <div class="col-md-6">
     <h4>Virtual Machines</h4>
     <ul class="list-group">
-      <li class="list-group-item" *ngFor="let vm of virtualMachines; let i = index" [class.active]="i == currentIndex"
-        (click)="setActiveVM(vm, i)">
+      <li class="list-group-item"
+        *ngFor="let vm of virtualMachines ?? [] | paginate: { itemsPerPage: 5, currentPage: page }; let i=index"
+        [class.active]="i == currentIndex" (click)="setActiveVM(vm, i)">
         <div class="table-responsive">
           <table class="table table-striped">
             <thead>
@@ -44,6 +45,9 @@
         </div>
       </li>
     </ul>
+    <div class="button-container btn ">
+      <pagination-controls (pageChange)="page = $event"></pagination-controls>
+    </div>
   </div>
   <div class="col-md-6">
     <app-vm-details [viewMode]="true" [currentVM]="currentVm"></app-vm-details>

@@ -12,6 +12,7 @@ import { VmListComponent } from './components/vm-list/vm-list.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -21,11 +22,12 @@ import { ToastrModule } from 'ngx-toastr';
     VmListComponent
   ],
   imports: [
-    BrowserModule,
     AppRoutingModule,
+    BrowserAnimationsModule, // required animations module
+    BrowserModule,
     FormsModule,
     HttpClientModule,
-    BrowserAnimationsModule, // required animations module
+    NgxPaginationModule,
     ToastrModule.forRoot({
       timeOut: 10000,
       positionClass: 'toast-top-right',

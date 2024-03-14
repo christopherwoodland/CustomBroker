@@ -11,8 +11,9 @@ export class VmListComponent implements OnInit {
 
   virtualMachines?: VirtualMachine[];
   currentVm: VirtualMachine = {};
-  currentIndex = -1;
-  title = '';
+  currentIndex: number = -1;
+  title: string = '';
+  page: number = 1;
 
   constructor(private virtualMachineService: VirtualMachineService) { }
 
