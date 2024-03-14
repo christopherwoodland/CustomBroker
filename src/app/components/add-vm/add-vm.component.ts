@@ -24,7 +24,18 @@ export class AddVMComponent {
 
   constructor(private vmService: VirtualMachineService, private toastr: ToastrService) { }
 
+  isValidIP(ip: string): boolean {
+    const ipv4Pattern = /^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/;
+    const ipv6Pattern = /^([0-9a-fA-F]{1,4}:){7}[0-9a-fA-F]{1,4}$/;
+
+    return ipv4Pattern.test(ip) || ipv6Pattern.test(ip);
+  }
   saveVM(): void {
+
+    if (!this.isValidIP(this.vm.ipAddress ?? "")) {
+      this.toastr.error(`Invalid IP Address IP4 or Ip6`);
+      return;
+    }
     const data = {
       hostname: this.vm.hostname,
       ipAddress: this.vm.ipAddress,
@@ -46,7 +57,7 @@ export class AddVMComponent {
         },
         error: (e) => {
           console.error(e);
-          this.toastr.success(`An error occurred while adding the Virtual Machine`);
+          this.toastr.error(`An error occurred while adding the Virtual Machine`);
         }
       });
   }

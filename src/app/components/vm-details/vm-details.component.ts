@@ -45,6 +45,13 @@ export class VMDetailsComponent implements OnInit {
     private router: Router,
     private toastr: ToastrService) { }
 
+  isValidIP(ip: string): boolean {
+    const ipv4Pattern = /^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/;
+    const ipv6Pattern = /^([0-9a-fA-F]{1,4}:){7}[0-9a-fA-F]{1,4}$/;
+
+    return ipv4Pattern.test(ip) || ipv6Pattern.test(ip);
+  }
+
   ngOnInit(): void {
     if (!this.viewMode) {
       this.message = '';
@@ -63,9 +70,14 @@ export class VMDetailsComponent implements OnInit {
         error: (e) => console.error(e)
       });
   }
+
   updateVM(): void {
     this.message = '';
     this.vmid = this.currentVM.vmid;
+    if (!this.isValidIP(this.currentVM.ipAddress ?? "")) {
+      this.toastr.error(`Invalid IP Address IP4 or Ip6`);
+      return;
+    }
     this.vmService.update(this.currentVM.vmid, this.currentVM)
       .subscribe({
         next: (res) => {
@@ -77,7 +89,7 @@ export class VMDetailsComponent implements OnInit {
         },
         error: (e) => {
           console.error(e);
-          this.toastr.success(`An error occurred while updating the Virtual Machine.`);
+          this.toastr.error(`An error occurred while updating the Virtual Machine.`);
         }
       });
   }
@@ -92,7 +104,7 @@ export class VMDetailsComponent implements OnInit {
         },
         error: (e) => {
           console.error(e);
-          this.toastr.success(`An error occurred while removing the Virtual Machine.`);
+          this.toastr.error(`An error occurred while removing the Virtual Machine.`);
         }
       });
   }
