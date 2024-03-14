@@ -13,6 +13,7 @@ import { VmListComponent } from './components/vm-list/vm-list.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { ConfirmBoxConfigModule, NgxAwesomePopupModule } from '@costlydeveloper/ngx-awesome-popup';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,17 @@ import { NgxPaginationModule } from 'ngx-pagination';
     AppRoutingModule,
     BrowserAnimationsModule, // required animations module
     BrowserModule,
+    NgxAwesomePopupModule.forRoot({
+      colorList: {
+        success: '#3caea3', // optional
+        info: '#2f8ee5', // optional
+        warning: '#ffc107', // optional
+        danger: '#e46464', // optional
+        customOne: '#3ebb1a', // optional
+        customTwo: '#bd47fa', // optional (up to custom five)
+      },
+    }),
+    ConfirmBoxConfigModule.forRoot(),
     FormsModule,
     HttpClientModule,
     NgxPaginationModule,

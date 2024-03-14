@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { VirtualMachine } from 'src/app/models/virtual-machines.model';
 import { VirtualMachineService } from 'src/app/services/virtual-machine.service';
 
+
 @Component({
   selector: 'app-vm-list',
   templateUrl: './vm-list.component.html',
@@ -20,6 +21,9 @@ export class VmListComponent implements OnInit {
   ngOnInit(): void {
     this.retrieveVms();
   }
+
+
+
 
   retrieveVms(): void {
     this.virtualMachineService.getAll()
@@ -42,17 +46,6 @@ export class VmListComponent implements OnInit {
     this.currentVm = vm;
     this.currentIndex = index;
   }
-
-  // removeAllTutorials(): void {
-  //   this.virtualMachineService.deleteAll()
-  //     .subscribe({
-  //       next: (res) => {
-  //         console.log(res);
-  //         this.refreshList();
-  //       },
-  //       error: (e) => console.error(e)
-  //     });
-  // }
 
   searchTitle(): void {
     this.currentVm = {};
