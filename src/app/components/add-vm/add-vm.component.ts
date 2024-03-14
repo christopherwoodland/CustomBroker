@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { VirtualMachine } from 'src/app/models/virtual-machines.model';
 import { VirtualMachineService } from 'src/app/services/virtual-machine.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-add-vm',
@@ -21,7 +22,7 @@ export class AddVMComponent {
   };
   submitted = false;
 
-  constructor(private vmService: VirtualMachineService) { }
+  constructor(private vmService: VirtualMachineService, private toastr: ToastrService) { }
 
   saveVM(): void {
     const data = {
@@ -41,8 +42,12 @@ export class AddVMComponent {
         next: (res) => {
           console.log(res);
           this.submitted = true;
+          this.toastr.success(`The Virtual Machine was added successfully!`);
         },
-        error: (e) => console.error(e)
+        error: (e) => {
+          console.error(e);
+          this.toastr.success(`An error occurred while adding the Virtual Machine`);
+        }
       });
   }
 

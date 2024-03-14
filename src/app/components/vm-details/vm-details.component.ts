@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { VirtualMachineService } from 'src/app/services/virtual-machine.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { VirtualMachine } from 'src/app/models/virtual-machines.model';
-
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-vm-details',
   templateUrl: './vm-details.component.html',
@@ -24,12 +24,14 @@ export class VMDetailsComponent implements OnInit {
     description: ''
   };
 
-  message = '';
+  message: string = '';
+  vmid: number | undefined = -1;
 
   constructor(
     private vmService: VirtualMachineService,
     private route: ActivatedRoute,
-    private router: Router) { }
+    private router: Router,
+    private toastr: ToastrService) { }
 
   ngOnInit(): void {
     if (!this.viewMode) {
@@ -51,13 +53,20 @@ export class VMDetailsComponent implements OnInit {
   }
   updateVM(): void {
     this.message = '';
+    this.vmid = this.currentVM.vmid;
     this.vmService.update(this.currentVM.vmid, this.currentVM)
       .subscribe({
         next: (res) => {
           console.log(res);
-          this.message = res.message ? res.message : 'This vm was updated successfully!';
+          this.toastr.success('This Virtual Machine was updated successfully!');
         },
-        error: (e) => console.error(e)
+        complete: () => {
+             this.toastr.success(`The Virtual Machine was updated successfully!`);
+        },
+        error: (e) => {
+          console.error(e);
+          this.toastr.success(`An error occurred while updating the Virtual Machine.`);
+        }
       });
   }
 
@@ -66,9 +75,13 @@ export class VMDetailsComponent implements OnInit {
       .subscribe({
         next: (res) => {
           console.log(res);
+          this.toastr.success('The Virtual Machine was removed successfully!');
           this.router.navigate(['/vms']);
         },
-        error: (e) => console.error(e)
+        error: (e) => {
+          console.error(e);
+          this.toastr.success(`An error occurred while removing the Virtual Machine.`);
+        }
       });
   }
 }

@@ -11,12 +11,24 @@
       </div>
       <div class="form-group">
         <label for="powerState">Power State</label>
-        <input type="text" class="form-control" id="powerState" required [(ngModel)]="vm.powerState"
+        <!-- <input type="text" class="form-control" id="powerState" required [(ngModel)]="vm.powerState"
           name="powerState" />
+           -->
+        <select [(ngModel)]="vm.powerState" class="form-control" id="powerState" required name="powerState">
+          <option value="On">On</option>
+          <option value="Off">Off</option>
+        </select>
       </div>
       <div class="form-group">
         <label for="checkedIn">Checked In</label>
-        <input type="text" class="form-control" id="checkedIn" required [(ngModel)]="vm.checkedIn" name="checkedIn" />
+        <!-- <input type="text" class="form-control" id="checkedIn" required [(ngModel)]="vm.checkedIn" name="checkedIn" /> -->
+
+        <select [(ngModel)]="vm.checkedIn" class="form-control" id="checkedIn" required name="checkedIn">
+          <option value="Yes">Yes</option>
+          <option value="No">No</option>
+        </select>
+
+
       </div>
       <div class="form-group">
         <label for="username">Username</label>
@@ -42,8 +54,8 @@
           name="description"></textarea>
       </div>
       <div class="button-container">
-      <button (click)="saveVM()" class="btn btn-success">Submit</button>
-    </div>
+        <button (click)="saveVM()" class="btn btn-success">Submit</button>
+      </div>
     </div>
     <div *ngIf="submitted">
       <h4>Virtual Machine was Submitted Successfully!</h4>
