@@ -1,7 +1,7 @@
 <div *ngIf="viewMode; else editable">
   <div *ngIf="currentVM.vmid">
     <h4>Virtual Machine ({{currentVM.vmid}})</h4>
-    <table class="table table-striped">
+    <table class="table table-striped" *ngIf="viewMode" [@slideInOut]>
       <tbody>
         <tr>
           <th scope="row">Vmid:</th>

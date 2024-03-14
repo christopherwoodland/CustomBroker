@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { trigger, transition, animate, style } from '@angular/animations'
 import { VirtualMachineService } from 'src/app/services/virtual-machine.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { VirtualMachine } from 'src/app/models/virtual-machines.model';
@@ -6,7 +7,18 @@ import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-vm-details',
   templateUrl: './vm-details.component.html',
-  styleUrls: ['./vm-details.component.css']
+  styleUrls: ['./vm-details.component.css'],
+  animations: [
+    trigger('slideInOut', [
+      transition(':enter', [
+        style({ transform: 'translateY(-100%)' }),
+        animate('400ms ease-in', style({ transform: 'translateY(0%)' }))
+      ]),
+      transition(':leave', [
+        animate('400ms ease-in', style({ transform: 'translateY(-100%)' }))
+      ])
+    ])
+  ]
 })
 export class VMDetailsComponent implements OnInit {
 
@@ -61,7 +73,7 @@ export class VMDetailsComponent implements OnInit {
           this.toastr.success('This Virtual Machine was updated successfully!');
         },
         complete: () => {
-             this.toastr.success(`The Virtual Machine was updated successfully!`);
+          this.toastr.success(`The Virtual Machine was updated successfully!`);
         },
         error: (e) => {
           console.error(e);
