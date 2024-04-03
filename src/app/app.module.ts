@@ -14,18 +14,24 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { ConfirmBoxConfigModule, NgxAwesomePopupModule } from '@costlydeveloper/ngx-awesome-popup';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
     AppComponent,
     AddVMComponent,
-    VMDetailsComponent,
-    VmListComponent
+    VMDetailsComponent
   ],
   imports: [
+    VmListComponent,
     AppRoutingModule,
     BrowserAnimationsModule, // required animations module
     BrowserModule,
+    MatTableModule,
+    MatPaginator,
+    MatPaginatorModule,
     NgxAwesomePopupModule.forRoot({
       colorList: {
         success: '#3caea3', // optional
@@ -46,7 +52,9 @@ import { ConfirmBoxConfigModule, NgxAwesomePopupModule } from '@costlydeveloper/
       preventDuplicates: true
     }), // ToastrModule added
   ],
-  providers: [],
+  providers: [
+    provideAnimationsAsync()
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -32,6 +32,7 @@ export class VMDetailsComponent implements OnInit {
   @Input() viewMode = false;
 
   @Input() currentVM: VirtualMachine = {
+    vmid:-1,
     hostname: '',
     ipAddress: '',
     powerState: '',

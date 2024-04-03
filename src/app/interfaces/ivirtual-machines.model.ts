@@ -1,12 +1,12 @@
 export interface IVirtualMachine {
-  vmid?: number;
-  hostname?: string;
-  ipAddress?: string | null;
-  powerState?: string | null;
-  checkedIn?: string | null;
-  username?: string | null;
-  avdHost?: string | null;
-  createDate?: Date | null;
-  lastUpdateDate?: Date | null;
-  description?: string | null;
+  vmid: number;
+  hostname: string;
+  ipAddress: string ;
+  powerState: string ;
+  checkedIn: string ;
+  username: string ;
+  avdHost: string ;
+  createDate: Date ;
+  lastUpdateDate: Date ;
+  description: string ;
 }
