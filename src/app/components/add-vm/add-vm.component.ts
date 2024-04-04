@@ -10,6 +10,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class AddVMComponent {
   vm: VirtualMachine = {
+    vmid: -1,
     hostname: '',
     ipAddress: '',
     powerState: '',
@@ -65,6 +66,7 @@ export class AddVMComponent {
   newVM(): void {
     this.submitted = false;
     this.vm = {
+      vmid: -1,
       hostname: '',
       ipAddress: '',
       powerState: '',

@@ -25,3 +25,56 @@ a:hover {
 a:active {
   text-decoration: underline;
 }
+
+.menu-button:hover {
+  text-decoration: underline;
+
+}
+
+.mat-button {
+  background-color: #fff;
+  border-radius: 10%;
+  height: 28px;
+  width: 18px
+}
+
+
+.mat-icon {
+  background-color: #fff;
+  border-radius: 10%;
+  height: 48px;
+  width: 48px;
+}
+
+
+.toolbar-spacer {
+  flex: 1 1 auto
+}
+
+.mat-mdc-raised-button {
+  margin: 8px 8px 8px 0;
+}
+
+.navbar-brand {
+  margin: 8px 8px 8px 0;
+}
+
+#default-menu {
+  display: block;
+}
+
+@media screen and (max-width: 500px) {
+  #default-menu {
+    display: none;
+  }
+}
+
+#hamburger-menu {
+  display: none;
+}
+
+@media screen and (max-width: 500px) {
+  #hamburger-menu {
+    display: block;
+  }
+}

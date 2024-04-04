@@ -1,12 +1,24 @@
-.submit-form {
-  max-width: 900px;
-  margin: auto;
-}
-
 .button-container {
-  display: flex;
+  flex: 1 1 100px;
 }
 
-.button-container .btn {
-  flex: 1;
+.submit-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.submit-form>* {
+  width: 100%;
+}
+
+.vm-component-button {
+  margin: 8px 8px 8px 0;
+  width: 220px;
+  float: right;
+}
+
+@media screen and (max-width: 500px) {
+  .vm-component-button {
+    width: 100%
+  }
 }

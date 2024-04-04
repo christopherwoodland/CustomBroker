@@ -17,3 +17,56 @@
   opacity: 1;
 
 }
+
+.vm-table {
+  width: 100%;
+}
+
+th.mat-sort-header-sorted {
+  color: black;
+}
+
+.mat-column-select {
+  overflow: initial;
+}
+
+.mat-sort-header-content {}
+
+.mat-column-hostname {
+
+  text-align: left;
+}
+
+.mat-column-username {
+
+  text-align: left;
+}
+
+.mat-column-checkedIn {
+
+  text-align: left;
+}
+
+.mat-column-powerState {
+  text-align: left;
+}
+
+.mat-mdc-row:hover {
+  background-color: #E8EAF6;
+  cursor: pointer;
+}
+
+.heading {
+
+  font-weight: bold;
+}
+
+.mat-mdc-card-title {
+  margin: 8px 8px 8px 0;
+
+}
+
+.filter{
+  width: 100%;
+}
+

@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { trigger, transition, animate, style } from '@angular/animations'
 import { VirtualMachineService } from 'src/app/services/virtual-machine.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { VirtualMachine } from 'src/app/models/virtual-machines.model';
@@ -11,27 +10,18 @@ import {
   AppearanceAnimation
 } from '@costlydeveloper/ngx-awesome-popup';
 
+
 @Component({
   selector: 'app-vm-details',
   templateUrl: './vm-details.component.html',
-  styleUrls: ['./vm-details.component.css'],
-  animations: [
-    trigger('slideInOut', [
-      transition(':enter', [
-        style({ transform: 'translateY(-100%)' }),
-        animate('400ms ease-in', style({ transform: 'translateY(0%)' }))
-      ]),
-      transition(':leave', [
-        animate('400ms ease-in', style({ transform: 'translateY(-100%)' }))
-      ])
-    ])
-  ]
+  styleUrls: ['./vm-details.component.css']
 })
 export class VMDetailsComponent implements OnInit {
 
   @Input() viewMode = false;
 
   @Input() currentVM: VirtualMachine = {
+    vmid: -1,
     hostname: '',
     ipAddress: '',
     powerState: '',
