@@ -1,55 +1,68 @@
-<div>
-  <div class="submit-form">
-    <div *ngIf="!submitted">
-      <div class="form-group">
-        <label for="hostname">Host Name</label>
-        <input type="text" class="form-control" id="hostname" required [(ngModel)]="vm.hostname" name="hostname" aria-required="true" />
-      </div>
-      <div class="form-group">
-        <label for="ipAddress">IP Address</label>
-        <input type="text" class="form-control" id="ipAddress" required [(ngModel)]="vm.ipAddress" name="ipAddress" aria-required="true" />
-      </div>
-      <div class="form-group">
-        <label for="powerState">Power State</label>
-        <select [(ngModel)]="vm.powerState" class="form-control" id="powerState" required name="powerState" aria-required="true">
-          <option value="On">On</option>
-          <option value="Off">Off</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label for="checkedIn">Checked In</label>
-        <select [(ngModel)]="vm.checkedIn" class="form-control" id="checkedIn" required name="checkedIn" aria-required="true">
-          <option value="Yes">Yes</option>
-          <option value="No">No</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label for="username">Username</label>
-        <input type="text" class="form-control" id="username" required [(ngModel)]="vm.username" name="username" aria-required="true" />
-      </div>
-      <div class="form-group">
-        <label for="avdHost">Avd Host</label>
-        <input type="text" class="form-control" id="avdHost" required [(ngModel)]="vm.avdHost" name="avdHost" aria-required="true" />
-      </div>
-      <div class="form-group">
-        <label for="createDate">Create Date</label>
-        <input type="text" readonly class="form-control" id="createDate" createDate [(ngModel)]="vm.createDate" name="createDate" aria-readonly="true" />
-      </div>
-      <div class="form-group">
-        <label for="lastUpdateDate">Last Update Date</label>
-        <input type="text" readonly class="form-control" id="lastUpdateDate" required [(ngModel)]="vm.lastUpdateDate" name="lastUpdateDate" aria-readonly="true" aria-required="true" />
-      </div>
-      <div class="form-group">
-        <label for="description">description</label>
-        <textarea class="form-control" id="description" required [(ngModel)]="vm.description" name="description" aria-required="true"></textarea>
-      </div>
-      <div class="button-container">
-        <button (click)="saveVM()" class="btn btn-success" tabindex="0">Submit</button>
-      </div>
+<mat-card>
+  <mat-card-header class="vm-detail-mat-card-header">
+    <mat-card-title>Add New Virtual Machine</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <div *ngIf="!submitted" class="submit-form">
+      <mat-form-field appearance="fill" class="">
+        <mat-label>Host Name</mat-label>
+        <input required matInput title="hostname" type="text" id="hostname" [(ngModel)]="vm.hostname" name="hostname" />
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="">
+        <mat-label>IP Address</mat-label>
+        <input required matInput title="ipAddress" type="text" id="ipAddress" [(ngModel)]="vm.ipAddress"
+          name="ipAddress" />
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="">
+        <mat-label>Power State</mat-label>
+        <mat-select required [(ngModel)]="vm.powerState">
+          <mat-option value="On">On</mat-option>
+          <mat-option value="Off">Off</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="">
+        <mat-label>Checked In</mat-label>
+        <mat-select required [(ngModel)]="vm.checkedIn">
+          <mat-option value="Yes">Yes</mat-option>
+          <mat-option value="No">No</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="">
+        <mat-label>User Name</mat-label>
+        <input required matInput title="username" type="text" id="username" [(ngModel)]="vm.username" name="username" />
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="">
+        <mat-label>Avd Host</mat-label>
+        <input required matInput title="avdHost" type="text" id="avdHost" [(ngModel)]="vm.avdHost" name="avdHost" />
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="">
+        <mat-label>Created Date</mat-label>
+        <input matInput title="createDate" type="text" readonly id="createDate" [(ngModel)]="vm.createDate"
+          name="createDate" />
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="">
+        <mat-label>Last Update Date</mat-label>
+        <input matInput title="lastUpdateDate" type="text" readonly id="lastUpdateDate" [(ngModel)]="vm.lastUpdateDate"
+          name="lastUpdateDate" />
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="">
+        <mat-label>Description</mat-label>
+        <textarea matInput title="description" class="form-control" id="description" [(ngModel)]="vm.description"
+          name="description"></textarea>
+      </mat-form-field>
+    </div>
+    <div *ngIf="!submitted" class="button-container">
+      <span class="toolbar-spacer"></span>
+      <button type="submit" class="vm-component-button" (click)="saveVM()" mat-raised-button color="primary"
+        matTooltip="Save New Virtual Machine" tabindex="0">Submit</button>
     </div>
     <div *ngIf="submitted">
-      <h4>Virtual Machine was Submitted Successfully!</h4>
-      <button class="btn btn-success" (click)="newVM()" tabindex="0">Add Another Virtual Machine</button>
+      <h4 class="header">Virtual Machine was Submitted Successfully!</h4>
+      <!-- <button type="submit" class="btn btn-success" (click)="newVM()" tabindex="0">Add Another Virtual Machine</button> -->
+
+
+      <button type="submit" class="" (click)="newVM()" tabindex="0" mat-raised-button color="primary"
+        matTooltip="Add Another Virtual Machine" tabindex="0">Add Another Virtual Machine</button>
     </div>
-  </div>
-</div>
+  </mat-card-content>
+</mat-card>

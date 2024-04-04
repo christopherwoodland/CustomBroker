@@ -1,125 +1,80 @@
-<div *ngIf="viewMode; else editable">
-  <div *ngIf="currentVM.vmid">
-    <h4>Virtual Machine ({{currentVM.vmid}})</h4>
-    <table class="table table-striped" *ngIf="viewMode" [@slideInOut]>
-      <tbody>
-        <tr>
-          <th scope="row">Vmid:</th>
-          <td>{{ currentVM.vmid }}</td>
-        </tr>
-        <tr>
-          <th scope="row">Host Name:</th>
-          <td>{{ currentVM.hostname }}</td>
-        </tr>
-        <tr>
-          <th scope="row">Ip Address:</th>
-          <td>{{ currentVM.ipAddress }}</td>
-        </tr>
-        <tr>
-          <th scope="row">Power State:</th>
-          <td>{{ currentVM.powerState }}</td>
-        </tr>
-        <tr>
-          <th scope="row">Checked In:</th>
-          <td>{{ currentVM.checkedIn }}</td>
-        </tr>
-        <tr>
-          <th scope="row">Username:</th>
-          <td>{{ currentVM.username }}</td>
-        </tr>
-        <tr>
-          <th scope="row">Avd Host:</th>
-          <td>{{ currentVM.avdHost }}</td>
-        </tr>
-        <tr>
-          <th scope="row">Create Date:</th>
-          <td>{{ currentVM.createDate }}</td>
-        </tr>
-        <tr>
-          <th scope="row">Last Update Date:</th>
-          <td>{{ currentVM.lastUpdateDate }}</td>
-        </tr>
-      </tbody>
-    </table>
-
-    <div class="button-container">
-      <a class="btn btn-secondary" routerLink="/vms/{{ currentVM.vmid }}">
-        Edit
-      </a>
-    </div>
-  </div>
-  <div *ngIf="!currentVM">
-    <br />
-    <p>Please click on a Virtual Machine...</p>
-  </div>
-</div>
-
-<ng-template #editable>
-  <div *ngIf="currentVM.vmid" class="edit-form">
-    <h4>Virtual Machine ({{currentVM.vmid}})</h4>
-    <form>
-      <div class="form-group">
-        <label for="vmid">Vmid</label>
-        <input type="text" readonly class="form-control" id="vmid" [(ngModel)]="currentVM.vmid" name="vmid" />
-      </div>
-      <div class="form-group">
-        <label for="hostname">Host Name</label>
-        <input type="text" class="form-control" id="hostname" [(ngModel)]="currentVM.hostname" name="hostname" />
-      </div>
-      <div class="form-group">
-        <label for="ipAddress">Ip Address</label>
-        <input type="text" class="form-control" id="ipAddress" [(ngModel)]="currentVM.ipAddress" name="ipAddress" />
-      </div>
-      <div class="form-group">
-        <label for="powerState">Power State</label>
-        <select [(ngModel)]="currentVM.powerState" class="form-control" id="powerState" required name="powerState">
-          <option value="On">On</option>
-          <option value="Off">Off</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label for="checkedIn">Checked In</label>
-        <select [(ngModel)]="currentVM.checkedIn" class="form-control" id="checkedIn" required name="checkedIn">
-          <option value="Yes">Yes</option>
-          <option value="No">No</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label for="username">Username</label>
-        <input type="text" class="form-control" id="username" [(ngModel)]="currentVM.username" name="username" />
-      </div>
-      <div class="form-group">
-        <label for="avdHost">Avd Host</label>
-        <input type="text" class="form-control" id="avdHost" [(ngModel)]="currentVM.avdHost" name="avdHost" />
-      </div>
-      <div class="form-group">
-        <label for="createDate">Create Date</label>
-        <input type="text" readonly class="form-control" id="createDate" [(ngModel)]="currentVM.createDate"
+<mat-card>
+  <mat-card-header class="vm-detail-mat-card-header">
+    <mat-card-title>Virtual Machine ({{currentVM.vmid}})</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <div *ngIf="currentVM.vmid" class="edit-form">
+      <mat-form-field appearance="fill" class="">
+        <mat-label>VMID</mat-label>
+        <mat-hint>{{currentVM.vmid}}</mat-hint>
+        <input required matInput title="vmid" type="text" readonly id="vmid" [(ngModel)]="currentVM.vmid" name="vmid" />
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="">
+        <mat-label>Host Name</mat-label>
+        <mat-hint>{{currentVM.hostname}}</mat-hint>
+        <input required matInput title="hostname" type="text" id="hostname" [(ngModel)]="currentVM.hostname" name="hostname" />
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="">
+        <mat-label>IP Address</mat-label>
+        <mat-hint>{{currentVM.ipAddress}}</mat-hint>
+        <input required matInput title="ipAddress" type="text" id="ipAddress" [(ngModel)]="currentVM.ipAddress"
+          name="ipAddress" />
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="">
+        <mat-label>Power State</mat-label>
+        <mat-hint>{{currentVM.powerState}}</mat-hint>
+        <mat-select required [(ngModel)]="currentVM.powerState">
+          <mat-option value="On">On</mat-option>
+          <mat-option value="Off">Off</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="">
+        <mat-label>Checked In</mat-label>
+        <mat-hint>{{currentVM.checkedIn}}</mat-hint>
+        <mat-select required [(ngModel)]="currentVM.checkedIn">
+          <mat-option value="Yes">Yes</mat-option>
+          <mat-option value="No">No</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="">
+        <mat-label>User Name</mat-label>
+        <mat-hint>{{currentVM.username}}</mat-hint>
+        <input required matInput title="username" type="text" id="username" [(ngModel)]="currentVM.username" name="username" />
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="">
+        <mat-label>Avd Host</mat-label>
+        <mat-hint>{{currentVM.avdHost}}</mat-hint>
+        <input required matInput title="avdHost" type="text" id="avdHost" [(ngModel)]="currentVM.avdHost" name="avdHost" />
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="">
+        <mat-label>Created Date</mat-label>
+        <mat-hint>{{currentVM.createDate}}</mat-hint>
+        <input matInput title="createDate" type="text" readonly id="createDate" [(ngModel)]="currentVM.createDate"
           name="createDate" />
-      </div>
-      <div class="form-group">
-        <label for="lastUpdateDate">Last Update Date</label>
-        <input type="text" readonly class="form-control" id="lastUpdateDate" [(ngModel)]="currentVM.lastUpdateDate"
-          name="lastUpdateDate" title="lastUpdateDate" />
-      </div>
-      <div class="form-group">
-        <label for="description">Description</label>
-        <textarea class="form-control" id="description" [(ngModel)]="currentVM.description"
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="">
+        <mat-label>Last Update Date</mat-label>
+        <mat-hint>{{currentVM.lastUpdateDate}}</mat-hint>
+        <input matInput title="lastUpdateDate" type="text" readonly id="lastUpdateDate"
+          [(ngModel)]="currentVM.lastUpdateDate" name="lastUpdateDate" />
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="">
+        <mat-label>Description</mat-label>
+        <textarea matInput title="description" class="form-control" id="description" [(ngModel)]="currentVM.description"
           name="description"></textarea>
-      </div>
-    </form>
-    <div class="button-container">
-      <button type="submit" class="btn btn-success mr-2" (click)="updateVM()">
-        Update
-      </button>
-      <button class="btn btn-danger mr-2" (click)="deleteVM()">
-        Delete
-      </button>
-    </div>
-  </div>
+      </mat-form-field>
+      <div class="button-container">
+        <span class="toolbar-spacer"></span>
+        <!-- <button mat-raised-button class="vm-details-button" color="warn" matTooltip="Delete Virtual Machine!"
+          (click)="deleteVM()">Delete</button> -->
+        <button mat-raised-button class="vm-details-button" color="primary" matTooltip="Update Virtual Machine"
+          (click)="updateVM()">Update</button>
 
-  <div *ngIf="!currentVM.vmid">
-    <br />
-    <p>Cannot access this Virtual Machine...</p>
-  </div>
-</ng-template>
+      </div>
+    </div>
+    <div *ngIf="!currentVM.vmid">
+      <br />
+      <p>Cannot access this Virtual Machine...</p>
+    </div>
+  </mat-card-content>
+</mat-card>

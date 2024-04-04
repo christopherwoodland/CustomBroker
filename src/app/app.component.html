@@ -1,15 +1,30 @@
 <div>
-  <nav class="navbar navbar-expand navbar-dark bg-dark">
-    <a href="#" class="navbar-brand">NOAA</a>
-    <div class="navbar-nav mr-auto">
-      <div class="button-container">
-        <button routerLink="addVms" class="btn btn-primary nav-link">Add New Virtual
-          Machine</button>
-        <a routerLink="vms" class="nav-link">List Virtual Machines</a>
+  <nav class="">
+    <mat-toolbar>
+      <div id="default-menu">
+        <span> <a href="#" class="navbar-brand">NOAA</a>
+        </span>
+        <span class="toolbar-spacer"></span>
+        <button type="submit" mat-raised-button color="primary" class="nav-button" matTooltip="Add New Virtual Machine"
+          routerLink="addVms" class="menu-button">Add New Virtual Machine</button>
+        <button type="submit" mat-raised-button color="primary" class="nav-button" matTooltip="List Virtual Machines"
+          routerLink="vms" class="menu-button">List Virtual Machines</button>
       </div>
-    </div>
+      <span class="toolbar-spacer"></span>
+      <div id="hamburger-menu">
+        <button type="submit" mat-button [matMenuTriggerFor]="menu" class="mat-button">
+          <mat-icon>menu</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button type="submit" mat-menu-item color="primary" class="nav-button" matTooltip="Add New Virtual Machine"
+            routerLink="addVms" class="menu-button">Add New Virtual Machine</button>
+          <button type="submit" mat-menu-item color="primary" class="nav-button" matTooltip="List Virtual Machines"
+            routerLink="vms" class="menu-button">List Virtual Machines</button>
+        </mat-menu>
+      </div>
+    </mat-toolbar>
   </nav>
-  <div class="container mt-3">
+  <div class="container">
     <router-outlet></router-outlet>
   </div>
 </div>

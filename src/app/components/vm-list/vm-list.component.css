@@ -33,20 +33,40 @@ th.mat-sort-header-sorted {
 .mat-sort-header-content {}
 
 .mat-column-hostname {
-  border-right: 1px solid currentColor;
+
   text-align: left;
 }
 
 .mat-column-username {
-  border-right: 1px solid currentColor;
+
   text-align: left;
 }
 
 .mat-column-checkedIn {
-  border-right: 1px solid currentColor;
+
   text-align: left;
 }
 
 .mat-column-powerState {
   text-align: left;
 }
+
+.mat-mdc-row:hover {
+  background-color: #E8EAF6;
+  cursor: pointer;
+}
+
+.heading {
+
+  font-weight: bold;
+}
+
+.mat-mdc-card-title {
+  margin: 8px 8px 8px 0;
+
+}
+
+.filter{
+  width: 100%;
+}
+

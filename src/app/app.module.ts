@@ -6,32 +6,57 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AddVMComponent } from './components/add-vm/add-vm.component';
-import { VMDetailsComponent } from './components/vm-details/vm-details.component';
 import { VmListComponent } from './components/vm-list/vm-list.component';
-
+import { VMDetailsComponent } from './components/vm-details/vm-details.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ToastrModule } from 'ngx-toastr';
-import { NgxPaginationModule } from 'ngx-pagination';
 import { ConfirmBoxConfigModule, NgxAwesomePopupModule } from '@costlydeveloper/ngx-awesome-popup';
+
+import { MatMenuModule } from '@angular/material/menu';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
+import { NgxPaginationModule } from 'ngx-pagination';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { MatTableModule } from '@angular/material/table';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatSelectModule } from '@angular/material/select';
+import { MatButton } from '@angular/material/button';
+import { MatTooltip } from '@angular/material/tooltip';
+import { MatCardModule, MatCardHeader, MatCardContent } from '@angular/material/card';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { MatTableModule } from '@angular/material/table';
+import { MatSort, MatSortModule } from '@angular/material/sort';
+import { ToastrModule } from 'ngx-toastr';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     AddVMComponent,
-    VMDetailsComponent
+    VMDetailsComponent,
+    VmListComponent
+
   ],
   imports: [
-    VmListComponent,
     AppRoutingModule,
+    MatMenuModule,
+    MatButton,
+    MatTooltip,
+    MatIconModule,
+    MatSort,
+    MatSortModule,
+    MatInputModule,
+    MatSelectModule,
+    MatToolbarModule,
+    MatCardModule,
+    MatCardHeader,
+    MatCardContent,
+    MatPaginatorModule,
+    MatPaginator,
+    MatTableModule,
+    MatFormFieldModule,
     BrowserAnimationsModule, // required animations module
     BrowserModule,
-    MatTableModule,
-    MatPaginator,
-    MatPaginatorModule,
     NgxAwesomePopupModule.forRoot({
       colorList: {
         success: '#3caea3', // optional
