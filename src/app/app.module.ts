@@ -5,9 +5,11 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AddVMComponent } from './components/add-vm/add-vm.component';
+import { VMAddComponent } from './components/vm-add/vm-add.component';
 import { VmListComponent } from './components/vm-list/vm-list.component';
 import { VMDetailsComponent } from './components/vm-details/vm-details.component';
+import { VMConfigurationComponent } from './components/vm-configuration/vm-configuration.component';
+import { VMGraphComponent } from './components/vm-graphs/vm-graphs.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ConfirmBoxConfigModule, NgxAwesomePopupModule } from '@costlydeveloper/ngx-awesome-popup';
@@ -32,9 +34,11 @@ import { ToastrModule } from 'ngx-toastr';
 @NgModule({
   declarations: [
     AppComponent,
-    AddVMComponent,
+    VMAddComponent,
     VMDetailsComponent,
-    VmListComponent
+    VmListComponent,
+    VMConfigurationComponent,
+    VMGraphComponent
 
   ],
   imports: [
