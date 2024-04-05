@@ -2,36 +2,53 @@
   <nav class="">
     <mat-toolbar>
       <div id="default-menu">
+        <div class="navbar-brand-div">
+          <span> <a href="#" class="navbar-brand">NOAA</a>
+          </span>
+        </div>
+
+        <!-- <div>
+          <span class="toolbar-spacer"></span>
+        </div>
+ -->
+
+        <button type="submit" mat-raised-button color="primary" class="nav-button" matTooltip="Add New Virtual Machine"
+          routerLink="addVms" class="menu-button">Add New Virtual
+          Machine</button>
+        <button type="submit" mat-raised-button color="primary" class="nav-button" matTooltip="List Virtual Machines"
+          routerLink="vms" class="menu-button">List Virtual Machines</button>
+        <span class="toolbar-spacer"></span>
+        <button type="submit" mat-raised-button color="primary" class="nav-button" matTooltip="Virtual Machine Visuals"
+          routerLink="graphs" class="menu-button"><mat-icon color="primary">auto_graph</mat-icon></button>
+        <button type="submit" mat-raised-button color="primary" class="nav-button"
+          matTooltip="Virtual Machine Configuration" routerLink="config" class="menu-button"><mat-icon
+            color="primary">settings</mat-icon></button>
+
+      </div>
+      <div id="hamburger-menu">
         <div>
           <span> <a href="#" class="navbar-brand">NOAA</a>
           </span>
-          <button type="submit" mat-raised-button color="primary" class="nav-button"
-            matTooltip="Add New Virtual Machine" routerLink="addVms" class="menu-button">Add New Virtual
-            Machine</button>
-          <button type="submit" mat-raised-button color="primary" class="nav-button" matTooltip="List Virtual Machines"
-            routerLink="vms" class="menu-button">List Virtual Machines</button>
-
-
-          <span class="toolbar-spacer"></span>
-          <button type="submit" mat-raised-button color="primary" class="nav-button"
-            matTooltip="Virtual Machine Visuals" routerLink="graphs" class="menu-button"><mat-icon
-              color="primary">auto_graph</mat-icon></button>
         </div>
-
-      </div>
-      <span class="toolbar-spacer"></span>
-      <div id="hamburger-menu">
-        <button type="submit" mat-button [matMenuTriggerFor]="menu" class="mat-button">
-          <mat-icon>menu</mat-icon>
-        </button>
-        <mat-menu #menu="matMenu">
-          <button type="submit" mat-menu-item color="primary" class="nav-button" matTooltip="Add New Virtual Machine"
-            routerLink="addVms" class="menu-button">Add New Virtual Machine</button>
-          <button type="submit" mat-menu-item color="primary" class="nav-button" matTooltip="List Virtual Machines"
-            routerLink="vms" class="menu-button">List Virtual Machines</button>
-          <button type="submit" mat-menu-item color="primary" class="nav-button"
-            matTooltip="Virtual Machine Visuals" routerLink="graphs" class="menu-button">Virtual Machine Visuals</button>
-        </mat-menu>
+        <div>
+          <span class="toolbar-spacer"></span>
+        </div>
+        <div>
+          <button type="submit" mat-button [matMenuTriggerFor]="menu" class="mat-button">
+            <mat-icon>menu</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button type="submit" mat-menu-item color="primary" class="nav-button" matTooltip="Add New Virtual Machine"
+              routerLink="addVms" class="menu-button">Add New Virtual Machine</button>
+            <button type="submit" mat-menu-item color="primary" class="nav-button" matTooltip="List Virtual Machines"
+              routerLink="vms" class="menu-button">List Virtual Machines</button>
+            <button type="submit" mat-menu-item color="primary" class="nav-button" matTooltip="Virtual Machine Visuals"
+              routerLink="graphs" class="menu-button">Virtual Machine Visuals</button>
+            <button type="submit" mat-menu-item color="primary" class="nav-button"
+              matTooltip="Virtual Machine Configiuration" routerLink="config" class="menu-button">Virtual Machine
+              Configuration</button>
+          </mat-menu>
+        </div>
       </div>
     </mat-toolbar>
   </nav>
