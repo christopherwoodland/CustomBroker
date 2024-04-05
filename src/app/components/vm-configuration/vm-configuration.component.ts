@@ -91,39 +91,6 @@ export class VMConfigurationComponent implements OnInit {
       });
   }
 
-
-
-  confirmBox(): boolean {
-
-    const confirmBox = new ConfirmBoxInitializer();
-
-    confirmBox.setTitle(`Are you sure yuo want to delete ${this.currentVM.hostname} (${this.currentVM.vmid})?`);
-
-    confirmBox.setMessage(`Confirm to delete ${this.currentVM.hostname} (${this.currentVM.vmid})!`);
-    confirmBox.setButtonLabels('YES', 'NO');
-    // Choose layout color type
-
-
-    confirmBox.setConfig({
-      layoutType: DialogLayoutDisplay.WARNING, // SUCCESS | INFO | NONE | DANGER | WARNING
-      animationIn: AppearanceAnimation.BOUNCE_IN, // BOUNCE_IN | SWING | ZOOM_IN | ZOOM_IN_ROTATE | ELASTIC | JELLO | FADE_IN | SLIDE_IN_UP | SLIDE_IN_DOWN | SLIDE_IN_LEFT | SLIDE_IN_RIGHT | NONE
-      animationOut: DisappearanceAnimation.BOUNCE_OUT, // BOUNCE_OUT | ZOOM_OUT | ZOOM_OUT_WIND | ZOOM_OUT_ROTATE | FLIP_OUT | SLIDE_OUT_UP | SLIDE_OUT_DOWN | SLIDE_OUT_LEFT | SLIDE_OUT_RIGHT | NONE
-      disableIcon: true,
-    });
-
-    // Simply open the popup and listen which button is clicked
-
-    confirmBox.openConfirmBox$().subscribe(resp => {
-
-      // do some action after user click on a button
-
-      console.log('Clicked button response: ', resp);
-
-
-    });
-    return true;
-  }
-
   deleteVM(): void {
     //this.confirmBox();
 

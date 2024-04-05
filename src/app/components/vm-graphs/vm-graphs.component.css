@@ -1,27 +1,21 @@
-.edit-form {
+.pie-charts {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content:space-evenly;
 }
 
-.edit-form>* {
-  width: 100%;
+.pie-charts>* {
+  width: 35%;
 }
 
-.button-container {
-  flex: 1 1 100px;
+.vm-graphs-mat-card-header{
+  background-color: rgb(245, 245, 245);
 }
 
-.vm-details-button {
-  margin: 8px 8px 8px 0;
-  width: 220px;
-  float: right;
+.vm-graphs-mat-card-header-chart{
+
+
 }
-
-.mat-mdc-card-title {
-  margin: 8px 8px 8px 0;
-}
-
-
 @media screen and (max-width: 500px) {
   .vm-details-button {
     width: 100%

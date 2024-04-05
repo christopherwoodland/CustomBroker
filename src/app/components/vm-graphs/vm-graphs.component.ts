@@ -1,143 +1,84 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ChartOptions } from 'chart.js';
+import { IVirtualMachine } from '../../interfaces/ivirtual-machines.model';
 import { VirtualMachineService } from 'src/app/services/virtual-machine.service';
-import { ActivatedRoute, Router } from '@angular/router';
-import { VirtualMachine } from 'src/app/models/virtual-machines.model';
-import { ToastrService } from 'ngx-toastr';
-import {
-  ConfirmBoxInitializer,
-  DialogLayoutDisplay,
-  DisappearanceAnimation,
-  AppearanceAnimation
-} from '@costlydeveloper/ngx-awesome-popup';
-
+import { AfterViewInit } from '@angular/core';
 
 @Component({
   selector: 'app-vm-graphs',
   templateUrl: './vm-graphs.component.html',
   styleUrls: ['./vm-graphs.component.css']
 })
-export class VMGraphComponent implements OnInit {
+export class VMGraphComponent implements OnInit, AfterViewInit {
+  title = '';
 
-  @Input() viewMode = false;
-
-  @Input() currentVM: VirtualMachine = {
-    vmid: -1,
-    hostname: '',
-    ipAddress: '',
-    powerState: '',
-    checkedIn: '',
-    username: '',
-    avdHost: '',
-    createDate: new Date(),
-    lastUpdateDate: new Date(),
-    description: ''
+  REFRESH_INTERVAL: number = 10000;
+  virtualMachines: IVirtualMachine[];
+  powerOn: number = 0;
+  powerOff: number = 0;
+  chkYes: number = 0;
+  chkNo: number = 0;
+  // Pie
+  pieChartOptions: ChartOptions<'pie'> = {
+    responsive: true,
+    animation: true
   };
+  pieChartLabels = [['Power State On'], ['Power State Off']];
+  pieChartDatasets = [{
+    data: [this.powerOn, this.powerOff]
+  }];
+  pieChartLegend = true;
+  pieChartPlugins = [];
+  pieChartOptionsCheckedIn: ChartOptions<'pie'> = {
+    responsive: true,
+    animation: true
+  };
+  pieChartLabelsCheckedIn = [['Checked In State Yes'], ['Checked In State No']];
+  pieChartDatasetsCheckedIn = [{
+    data: [this.chkYes, this.chkNo]
+  }];
+  pieChartLegendCheckedIn = true;
+  pieChartPluginsCheckedIn = [];
 
-  message: string = '';
-  vmid: number | undefined = -1;
-
-  constructor(
-    private vmService: VirtualMachineService,
-    private route: ActivatedRoute,
-    private router: Router,
-    private toastr: ToastrService) { }
-
-  isValidIP(ip: string): boolean {
-    const ipv4Pattern = /^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/;
-    const ipv6Pattern = /^([0-9a-fA-F]{1,4}:){7}[0-9a-fA-F]{1,4}$/;
-
-    return ipv4Pattern.test(ip) || ipv6Pattern.test(ip);
+  constructor(private virtualMachineService: VirtualMachineService) {
+    this.virtualMachines = [];
   }
 
+
+  initPieCharts(): void {
+    this.powerOn = this.virtualMachines.filter(vm => vm.powerState.toLocaleLowerCase() == "on").length || 0;
+    this.powerOff = this.virtualMachines.filter(vm => vm.powerState.toLocaleLowerCase() == "off").length || 0;
+    this.chkYes = this.virtualMachines.filter(vm => vm.checkedIn.toLocaleLowerCase() == "yes").length || 0;
+    this.chkNo = this.virtualMachines.filter(vm => vm.checkedIn.toLocaleLowerCase() == "no").length || 0;
+    this.pieChartDatasets = [{
+      data: [this.powerOn, this.powerOff]
+    }];
+    this.pieChartDatasetsCheckedIn = [{
+      data: [this.chkYes, this.chkNo]
+    }];
+
+  }
   ngOnInit(): void {
-    if (!this.viewMode) {
-      this.message = '';
-      this.getVM(this.route.snapshot.params["id"]);
-    }
+  }
+  ngAfterViewInit() {
+    this.retrieveVms();
+    this.refreshCharts();
   }
 
-  getVM(id: string): void {
-    this.vmService.get(id)
+  refreshCharts(): void {
+    setInterval(() => {
+      this.retrieveVms();
+    }, this.REFRESH_INTERVAL);
+  }
+  retrieveVms(): void {
+    this.virtualMachineService.getAll()
       .subscribe({
         next: (data) => {
-          this.currentVM = data;
-          this.currentVM.lastUpdateDate = new Date();
-          console.log(data);
+          this.virtualMachines = data;
+          console.log(this.virtualMachines);
+          this.initPieCharts();
         },
         error: (e) => console.error(e)
-      });
-  }
-
-  updateVM(): void {
-    this.message = '';
-    this.vmid = this.currentVM.vmid;
-    if (!this.isValidIP(this.currentVM.ipAddress ?? "")) {
-      this.toastr.error(`Invalid IP Address IP4 or Ip6`);
-      return;
-    }
-    this.vmService.update(this.currentVM.vmid, this.currentVM)
-      .subscribe({
-        next: (res) => {
-          console.log(res);
-          this.toastr.success('This Virtual Machine was updated successfully!');
-        },
-        complete: () => {
-          //this.toastr.success(`The Virtual Machine was updated successfully!`);
-        },
-        error: (e) => {
-          console.error(e);
-          this.toastr.error(`An error occurred while updating the Virtual Machine.`);
-        }
-      });
-  }
-
-
-
-  confirmBox(): boolean {
-
-    const confirmBox = new ConfirmBoxInitializer();
-
-    confirmBox.setTitle(`Are you sure yuo want to delete ${this.currentVM.hostname} (${this.currentVM.vmid})?`);
-
-    confirmBox.setMessage(`Confirm to delete ${this.currentVM.hostname} (${this.currentVM.vmid})!`);
-    confirmBox.setButtonLabels('YES', 'NO');
-    // Choose layout color type
-
-
-    confirmBox.setConfig({
-      layoutType: DialogLayoutDisplay.WARNING, // SUCCESS | INFO | NONE | DANGER | WARNING
-      animationIn: AppearanceAnimation.BOUNCE_IN, // BOUNCE_IN | SWING | ZOOM_IN | ZOOM_IN_ROTATE | ELASTIC | JELLO | FADE_IN | SLIDE_IN_UP | SLIDE_IN_DOWN | SLIDE_IN_LEFT | SLIDE_IN_RIGHT | NONE
-      animationOut: DisappearanceAnimation.BOUNCE_OUT, // BOUNCE_OUT | ZOOM_OUT | ZOOM_OUT_WIND | ZOOM_OUT_ROTATE | FLIP_OUT | SLIDE_OUT_UP | SLIDE_OUT_DOWN | SLIDE_OUT_LEFT | SLIDE_OUT_RIGHT | NONE
-      disableIcon: true,
-    });
-
-    // Simply open the popup and listen which button is clicked
-
-    confirmBox.openConfirmBox$().subscribe(resp => {
-
-      // do some action after user click on a button
-
-      console.log('Clicked button response: ', resp);
-
-
-    });
-    return true;
-  }
-
-  deleteVM(): void {
-    //this.confirmBox();
-
-    this.vmService.delete(this.currentVM.vmid)
-      .subscribe({
-        next: (res) => {
-          console.log(res);
-          this.toastr.success('The Virtual Machine was removed successfully!');
-          this.router.navigate(['/vms']);
-        },
-        error: (e) => {
-          console.error(e);
-          this.toastr.error(`An error occurred while removing the Virtual Machine.`);
-        }
       });
   }
 }
