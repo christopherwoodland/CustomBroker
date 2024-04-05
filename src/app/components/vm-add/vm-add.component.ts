@@ -4,11 +4,11 @@ import { VirtualMachineService } from 'src/app/services/virtual-machine.service'
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
-  selector: 'app-add-vm',
-  templateUrl: './add-vm.component.html',
-  styleUrls: ['./add-vm.component.css']
+  selector: 'app-vm-add',
+  templateUrl: './vm-add.component.html',
+  styleUrls: ['./vm-add.component.css']
 })
-export class AddVMComponent {
+export class VMAddComponent {
   vm: VirtualMachine = {
     vmid: -1,
     hostname: '',

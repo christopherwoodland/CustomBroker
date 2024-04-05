@@ -12,11 +12,11 @@ import {
 
 
 @Component({
-  selector: 'app-vm-details',
-  templateUrl: './vm-details.component.html',
-  styleUrls: ['./vm-details.component.css']
+  selector: 'app-vm-configuration',
+  templateUrl: './vm-configuration.component.html',
+  styleUrls: ['./vm-configuration.component.css']
 })
-export class VMDetailsComponent implements OnInit {
+export class VMConfigurationComponent implements OnInit {
 
   @Input() viewMode = false;
 

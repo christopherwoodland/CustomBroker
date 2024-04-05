@@ -61,7 +61,14 @@ a:active {
 
 #default-menu {
   display: block;
+  width:100%
 }
+
+#default-menu div{
+  display:flex;
+  width:100%
+}
+
 
 @media screen and (max-width: 500px) {
   #default-menu {

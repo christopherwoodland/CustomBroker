@@ -1,0 +1,23 @@
+.pie-charts {
+  display: flex;
+  flex-direction: row;
+  justify-content:space-evenly;
+}
+
+.pie-charts>* {
+  width: 35%;
+}
+
+.vm-graphs-mat-card-header{
+  background-color: rgb(245, 245, 245);
+}
+
+.vm-graphs-mat-card-header-chart{
+
+
+}
+@media screen and (max-width: 500px) {
+  .vm-details-button {
+    width: 100%
+  }
+}

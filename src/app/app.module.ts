@@ -3,11 +3,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AddVMComponent } from './components/add-vm/add-vm.component';
+import { AppRoutingModule } from './app-routing.module';
+import { VMAddComponent } from './components/vm-add/vm-add.component';
 import { VmListComponent } from './components/vm-list/vm-list.component';
 import { VMDetailsComponent } from './components/vm-details/vm-details.component';
+import { VMConfigurationComponent } from './components/vm-configuration/vm-configuration.component';
+import { VMGraphComponent } from './components/vm-graphs/vm-graphs.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ConfirmBoxConfigModule, NgxAwesomePopupModule } from '@costlydeveloper/ngx-awesome-popup';
@@ -27,14 +29,18 @@ import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { ToastrModule } from 'ngx-toastr';
+import { BaseChartDirective } from 'ng2-charts';
+import { provideCharts, withDefaultRegisterables } from 'ng2-charts';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    AddVMComponent,
+    VMAddComponent,
     VMDetailsComponent,
-    VmListComponent
+    VmListComponent,
+    VMConfigurationComponent,
+    VMGraphComponent
 
   ],
   imports: [
@@ -57,6 +63,7 @@ import { ToastrModule } from 'ngx-toastr';
     MatFormFieldModule,
     BrowserAnimationsModule, // required animations module
     BrowserModule,
+    BaseChartDirective,
     NgxAwesomePopupModule.forRoot({
       colorList: {
         success: '#3caea3', // optional
@@ -78,7 +85,8 @@ import { ToastrModule } from 'ngx-toastr';
     }), // ToastrModule added
   ],
   providers: [
-    provideAnimationsAsync()
+    provideAnimationsAsync(),
+    provideCharts(withDefaultRegisterables())
   ],
   bootstrap: [AppComponent]
 })
