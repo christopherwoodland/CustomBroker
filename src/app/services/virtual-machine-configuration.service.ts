@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { VirtualMachineConfiguration } from '../models/virtual-machines-configuration.model';
 
-const baseUrl = 'https://custombrokerwebapi.azurewebsites.net/configuration';
+const baseUrlConfig = 'https://custombrokerwebapi.azurewebsites.net/configuration';
 @Injectable({
   providedIn: 'root'
 })
@@ -12,30 +12,30 @@ export class VirtualMachineConfigurationService {
   constructor(private http: HttpClient) { }
 
   getAll(): Observable<VirtualMachineConfiguration[]> {
-    return this.http.get<VirtualMachineConfiguration[]>(baseUrl);
+    return this.http.get<VirtualMachineConfiguration[]>(baseUrlConfig);
   }
 
   get(id: any): Observable<VirtualMachineConfiguration> {
-    return this.http.get<VirtualMachineConfiguration>(`${baseUrl}/${id}`);
+    return this.http.get<VirtualMachineConfiguration>(`${baseUrlConfig}/${id}`);
   }
 
   create(data: any): Observable<any> {
-    return this.http.post(baseUrl, data);
+    return this.http.post(baseUrlConfig, data);
   }
 
   update(id: any, data: any): Observable<any> {
-    return this.http.put(`${baseUrl}/${id}`, data);
+    return this.http.put(`${baseUrlConfig}/${id}`, data);
   }
 
   delete(id: any): Observable<any> {
-    return this.http.delete(`${baseUrl}/${id}`);
+    return this.http.delete(`${baseUrlConfig}/${id}`);
   }
 
   // deleteAll(): Observable<any> {
-  //   return this.http.delete(baseUrl);
+  //   return this.http.delete(baseUrlConfig);
   // }
 
   findByTitle(title: any): Observable<VirtualMachineConfiguration[]> {
-    return this.http.get<VirtualMachineConfiguration[]>(`${baseUrl}?title=${title}`);
+    return this.http.get<VirtualMachineConfiguration[]>(`${baseUrlConfig}?title=${title}`);
   }
 }

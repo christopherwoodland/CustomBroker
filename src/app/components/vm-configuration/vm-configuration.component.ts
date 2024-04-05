@@ -28,15 +28,15 @@ export class VMConfigurationComponent implements OnInit {
 
   ngOnInit(): void {
     if (!this.viewMode) {
-      this.getConfiguration(this.route.snapshot.params["id"]);
+      this.getConfiguration();
     }
   }
 
-  getConfiguration(id: string): void {
-    this.vmService.get(id)
+  getConfiguration(): void {
+    this.vmService.getAll()
       .subscribe({
         next: (data) => {
-          this.config = data;
+          this.config = data[0];
           console.log(data);
         },
         error: (e) => console.error(e)
