@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { VirtualMachine } from '../models/virtual-machines.model';
 
 const baseUrl = 'https://custombrokerwebapi.azurewebsites.net/virtualmachines';
-
+const baseUrlConfig = 'https://custombrokerwebapi.azurewebsites.net/virtualmachines';
 @Injectable({
   providedIn: 'root'
 })

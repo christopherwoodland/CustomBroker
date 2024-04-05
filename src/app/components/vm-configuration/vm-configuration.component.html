@@ -1,80 +1,51 @@
 <mat-card>
-  <mat-card-header class="vm-detail-mat-card-header">
-    <mat-card-title>Virtual Machine ({{currentVM.vmid}})</mat-card-title>
+  <mat-card-header class="vm-configuration-mat-card-header">
+    <mat-card-title>Virtual Machine Configuration</mat-card-title>
   </mat-card-header>
   <mat-card-content>
-    <div *ngIf="currentVM.vmid" class="edit-form">
+    <div *ngIf="config.configID" class="edit-form">
       <mat-form-field appearance="fill" class="">
-        <mat-label>VMID</mat-label>
-        <mat-hint>{{currentVM.vmid}}</mat-hint>
-        <input required matInput title="vmid" type="text" readonly id="vmid" [(ngModel)]="currentVM.vmid" name="vmid" />
+        <mat-label>ConfigID</mat-label>
+        <mat-hint>{{config.configID}}</mat-hint>
+        <input required matInput title="configID" type="text" readonly id="configID" [(ngModel)]="config.configID"
+          name="configID" />
       </mat-form-field>
       <mat-form-field appearance="fill" class="">
-        <mat-label>Host Name</mat-label>
-        <mat-hint>{{currentVM.hostname}}</mat-hint>
-        <input required matInput title="hostname" type="text" id="hostname" [(ngModel)]="currentVM.hostname" name="hostname" />
+        <mat-label>Scale Up Trigger</mat-label>
+        <mat-hint>{{config.scaleUpTrigger}}</mat-hint>
+        <input required matInput title="scaleUpTrigger" type="text" id="scaleUpTrigger"
+          [(ngModel)]="config.scaleUpTrigger" name="scaleUpTrigger" />
       </mat-form-field>
       <mat-form-field appearance="fill" class="">
-        <mat-label>IP Address</mat-label>
-        <mat-hint>{{currentVM.ipAddress}}</mat-hint>
-        <input required matInput title="ipAddress" type="text" id="ipAddress" [(ngModel)]="currentVM.ipAddress"
-          name="ipAddress" />
+        <mat-label>Scale Down Trigger</mat-label>
+        <mat-hint>{{config.scaleDownTrigger}}</mat-hint>
+        <input required matInput title="ScaleDownTrigger" type="text" id="scaleDownTrigger"
+          [(ngModel)]="config.scaleDownTrigger" name="scaleDownTrigger" />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="">
+        <mat-label>Scale Up Percentage</mat-label>
+        <mat-hint>{{config.scaleUpPercentage}}</mat-hint>
+        <input required matInput title="scaleUpPercentage" type="text" id="scaleUpPercentage"
+          [(ngModel)]="config.scaleUpPercentage" name="scaleUpPercentage" />
       </mat-form-field>
       <mat-form-field appearance="fill" class="">
-        <mat-label>Power State</mat-label>
-        <mat-hint>{{currentVM.powerState}}</mat-hint>
-        <mat-select required [(ngModel)]="currentVM.powerState">
-          <mat-option value="On">On</mat-option>
-          <mat-option value="Off">Off</mat-option>
-        </mat-select>
-      </mat-form-field>
-      <mat-form-field appearance="fill" class="">
-        <mat-label>Checked In</mat-label>
-        <mat-hint>{{currentVM.checkedIn}}</mat-hint>
-        <mat-select required [(ngModel)]="currentVM.checkedIn">
-          <mat-option value="Yes">Yes</mat-option>
-          <mat-option value="No">No</mat-option>
-        </mat-select>
-      </mat-form-field>
-      <mat-form-field appearance="fill" class="">
-        <mat-label>User Name</mat-label>
-        <mat-hint>{{currentVM.username}}</mat-hint>
-        <input required matInput title="username" type="text" id="username" [(ngModel)]="currentVM.username" name="username" />
-      </mat-form-field>
-      <mat-form-field appearance="fill" class="">
-        <mat-label>Avd Host</mat-label>
-        <mat-hint>{{currentVM.avdHost}}</mat-hint>
-        <input required matInput title="avdHost" type="text" id="avdHost" [(ngModel)]="currentVM.avdHost" name="avdHost" />
-      </mat-form-field>
-      <mat-form-field appearance="fill" class="">
-        <mat-label>Created Date</mat-label>
-        <mat-hint>{{currentVM.createDate}}</mat-hint>
-        <input matInput title="createDate" type="text" readonly id="createDate" [(ngModel)]="currentVM.createDate"
-          name="createDate" />
-      </mat-form-field>
-      <mat-form-field appearance="fill" class="">
-        <mat-label>Last Update Date</mat-label>
-        <mat-hint>{{currentVM.lastUpdateDate}}</mat-hint>
-        <input matInput title="lastUpdateDate" type="text" readonly id="lastUpdateDate"
-          [(ngModel)]="currentVM.lastUpdateDate" name="lastUpdateDate" />
-      </mat-form-field>
-      <mat-form-field appearance="fill" class="">
-        <mat-label>Description</mat-label>
-        <textarea matInput title="description" class="form-control" id="description" [(ngModel)]="currentVM.description"
-          name="description"></textarea>
+        <mat-label>Scale Down Percentage</mat-label>
+        <mat-hint>{{config.scaleDownPercentage}}</mat-hint>
+        <input required matInput title="scaleDownPercentage" type="text" id="scaleDownPercentage"
+          [(ngModel)]="config.scaleDownPercentage" name="scaleDownPercentage" />
       </mat-form-field>
       <div class="button-container">
         <span class="toolbar-spacer"></span>
         <!-- <button mat-raised-button class="vm-details-button" color="warn" matTooltip="Delete Virtual Machine!"
-          (click)="deleteVM()">Delete</button> -->
+          (click)="deleteConfiguration()">Delete</button> -->
         <button mat-raised-button class="vm-details-button" color="primary" matTooltip="Update Virtual Machine"
-          (click)="updateVM()">Update</button>
-
+          (click)="updateConfiguration()">Update</button>
       </div>
     </div>
-    <div *ngIf="!currentVM.vmid">
+    <div *ngIf="!config.configID">
       <br />
-      <p>Cannot access this Virtual Machine...</p>
+      <p>Cannot access this Virtual Machine Configuration...</p>
     </div>
   </mat-card-content>
 </mat-card>

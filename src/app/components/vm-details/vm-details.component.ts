@@ -1,14 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { VirtualMachineService } from 'src/app/services/virtual-machine.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { VirtualMachine } from 'src/app/models/virtual-machines.model';
+import { IVirtualMachine } from 'src/app/interfaces/ivirtual-machines.model';
 import { ToastrService } from 'ngx-toastr';
-import {
-  ConfirmBoxInitializer,
-  DialogLayoutDisplay,
-  DisappearanceAnimation,
-  AppearanceAnimation
-} from '@costlydeveloper/ngx-awesome-popup';
 
 
 @Component({
@@ -20,7 +14,7 @@ export class VMDetailsComponent implements OnInit {
 
   @Input() viewMode = false;
 
-  @Input() currentVM: VirtualMachine = {
+  @Input() currentVM: IVirtualMachine = {
     vmid: -1,
     hostname: '',
     ipAddress: '',
@@ -69,7 +63,6 @@ export class VMDetailsComponent implements OnInit {
   }
 
   updateVM(): void {
-    this.message = '';
     this.vmid = this.currentVM.vmid;
     if (!this.isValidIP(this.currentVM.ipAddress ?? "")) {
       this.toastr.error(`Invalid IP Address IP4 or Ip6`);
@@ -92,8 +85,7 @@ export class VMDetailsComponent implements OnInit {
   }
 
   deleteVM(): void {
-    //this.confirmBox();
-
+    //TODO Delete Confirmation Box
     this.vmService.delete(this.currentVM.vmid)
       .subscribe({
         next: (res) => {

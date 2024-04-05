@@ -1,15 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { VirtualMachineService } from 'src/app/services/virtual-machine.service';
+import { VirtualMachineConfigurationService } from 'src/app/services/virtual-machine-configuration.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { VirtualMachine } from 'src/app/models/virtual-machines.model';
 import { ToastrService } from 'ngx-toastr';
-import {
-  ConfirmBoxInitializer,
-  DialogLayoutDisplay,
-  DisappearanceAnimation,
-  AppearanceAnimation
-} from '@costlydeveloper/ngx-awesome-popup';
-
+import { IVirtualMachineConfiguration } from 'src/app/interfaces/ivirtual-machines-configuration.model';
 
 @Component({
   selector: 'app-vm-configuration',
@@ -19,91 +12,67 @@ import {
 export class VMConfigurationComponent implements OnInit {
 
   @Input() viewMode = false;
-
-  @Input() currentVM: VirtualMachine = {
-    vmid: -1,
-    hostname: '',
-    ipAddress: '',
-    powerState: '',
-    checkedIn: '',
-    username: '',
-    avdHost: '',
-    createDate: new Date(),
-    lastUpdateDate: new Date(),
-    description: ''
+  @Input() config: IVirtualMachineConfiguration = {
+    configID: -1,
+    scaleUpTrigger: -1,
+    scaleDownTrigger: -1,
+    scaleUpPercentage: -1,
+    scaleDownPercentage: -1
   };
-
-  message: string = '';
-  vmid: number | undefined = -1;
-
+  configID: number | undefined = -1;
   constructor(
-    private vmService: VirtualMachineService,
+    private vmService: VirtualMachineConfigurationService,
     private route: ActivatedRoute,
     private router: Router,
     private toastr: ToastrService) { }
 
-  isValidIP(ip: string): boolean {
-    const ipv4Pattern = /^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/;
-    const ipv6Pattern = /^([0-9a-fA-F]{1,4}:){7}[0-9a-fA-F]{1,4}$/;
-
-    return ipv4Pattern.test(ip) || ipv6Pattern.test(ip);
-  }
-
   ngOnInit(): void {
     if (!this.viewMode) {
-      this.message = '';
-      this.getVM(this.route.snapshot.params["id"]);
+      this.getConfiguration();
     }
   }
 
-  getVM(id: string): void {
-    this.vmService.get(id)
+  getConfiguration(): void {
+    this.vmService.getAll()
       .subscribe({
         next: (data) => {
-          this.currentVM = data;
-          this.currentVM.lastUpdateDate = new Date();
+          this.config = data[0];
           console.log(data);
         },
         error: (e) => console.error(e)
       });
   }
 
-  updateVM(): void {
-    this.message = '';
-    this.vmid = this.currentVM.vmid;
-    if (!this.isValidIP(this.currentVM.ipAddress ?? "")) {
-      this.toastr.error(`Invalid IP Address IP4 or Ip6`);
-      return;
-    }
-    this.vmService.update(this.currentVM.vmid, this.currentVM)
+  updateConfiguration(): void {
+    this.configID = this.config.configID;
+    this.vmService.update(this.config.configID, this.config)
       .subscribe({
         next: (res) => {
           console.log(res);
-          this.toastr.success('This Virtual Machine was updated successfully!');
+          this.toastr.success('Configuration was updated successfully!');
         },
         complete: () => {
           //this.toastr.success(`The Virtual Machine was updated successfully!`);
         },
         error: (e) => {
           console.error(e);
-          this.toastr.error(`An error occurred while updating the Virtual Machine.`);
+          this.toastr.error(`An error occurred while updating the Configuration.`);
         }
       });
   }
 
-  deleteVM(): void {
-    //this.confirmBox();
-
-    this.vmService.delete(this.currentVM.vmid)
+  deleteConfiguration(): void {
+    //TODO Confirmation Box
+    this.vmService.delete(this.config.configID)
       .subscribe({
         next: (res) => {
           console.log(res);
-          this.toastr.success('The Virtual Machine was removed successfully!');
+          this.toastr.success('The Configuration was removed successfully!');
           this.router.navigate(['/vms']);
         },
         error: (e) => {
           console.error(e);
-          this.toastr.error(`An error occurred while removing the Virtual Machine.`);
+          this.toastr.error(`An error occurred while removing the Configuration.`);
         }
       });
   }

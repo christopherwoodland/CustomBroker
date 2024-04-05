@@ -12,11 +12,7 @@ import { MatIconModule } from '@angular/material/icon';
 export class AppComponent implements AfterViewInit {
   title = 'NOAA-Custom-Broker';
 
-  constructor(private iconRegistry: MatIconModule, private sanitizer: DomSanitizer) {
-    // this.iconRegistry.addSvgIcon(
-    //   'cog',
-    //   this.sanitizer.bypassSecurityTrustResourceUrl('assets/img/cog.svg'));
-  }
+  constructor(private iconRegistry: MatIconModule, private sanitizer: DomSanitizer) { }
   ngAfterViewInit() {
     //DO SOMETHING
   }
