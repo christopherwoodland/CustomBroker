@@ -1,15 +1,3 @@
-.button-container {
-  display: flex;
-}
-
-.button-container .btn {
-  flex: 1;
-}
-
-.call-to-action {
-  color: #fff;
-}
-
 a:link {
   text-decoration: none;
 }
@@ -28,7 +16,6 @@ a:active {
 
 .menu-button:hover {
   text-decoration: underline;
-
 }
 
 .mat-button {
@@ -38,14 +25,12 @@ a:active {
   width: 18px
 }
 
-
 .mat-icon {
   background-color: #fff;
   border-radius: 10%;
   height: 48px;
   width: 48px;
 }
-
 
 .toolbar-spacer {
   flex: 1 1 auto
@@ -56,10 +41,11 @@ a:active {
 }
 
 .navbar-brand-div {
-  margin-top:10px;
+  margin-top: 10px;
 }
+
 .navbar-brand {
-  /* margin: 8px 8px 8px 0; */
+  margin: 8px 8px 8px 0;
 }
 
 #default-menu {
@@ -72,26 +58,22 @@ a:active {
   width: 100px;
 }
 
-
-@media screen and (max-width: 500px) {
-  #default-menu {
-    display: none;
-  }
-}
-
 #hamburger-menu {
   display: none;
 }
 
-@media screen and (max-width: 500px) {
+
+@media screen and (max-width: 700px) {
+  #default-menu {
+    display: none;
+  }
+
   #hamburger-menu {
     display: flex;
     justify-content: space-between;
     width: 100%;
   }
-}
 
-@media screen and (max-width: 500px) {
   #hamburger-menu div {
     width: 100px;
   }
