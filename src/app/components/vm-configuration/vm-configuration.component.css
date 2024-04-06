@@ -14,3 +14,20 @@
 .mat-mdc-card-title {
   margin: 8px 8px 8px 0;
 }
+
+
+.vm-configuration-button {
+  margin: 8px 8px 8px 0;
+  width: 220px;
+  float: right;
+}
+
+.mat-mdc-card-title {
+  margin: 8px 8px 8px 0;
+}
+
+@media screen and (max-width: 500px) {
+  .vm-configuration-button {
+    width: 100%
+  }
+}
