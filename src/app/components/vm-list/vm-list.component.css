@@ -1,72 +1,9 @@
-.list {
-  text-align: left;
-  max-width: 900px;
-  margin: auto;
-}
-
-.button-container {
-  display: flex;
-}
-
-.button-container .btn {
-  flex: 1;
-}
-
-.active {
-  background: #D3d3d3;
-  opacity: 1;
-
-}
-
-.vm-table {
+.filter {
   width: 100%;
 }
 
-th.mat-sort-header-sorted {
-  color: black;
+@media screen and (max-width: 700px) {
+  .mat-elevation-z8 {
+    box-shadow: 0px 0px 0px 0px;
+  }
 }
-
-.mat-column-select {
-  overflow: initial;
-}
-
-.mat-sort-header-content {}
-
-.mat-column-hostname {
-
-  text-align: left;
-}
-
-.mat-column-username {
-
-  text-align: left;
-}
-
-.mat-column-checkedIn {
-
-  text-align: left;
-}
-
-.mat-column-powerState {
-  text-align: left;
-}
-
-.mat-mdc-row:hover {
-  background-color: #E8EAF6;
-  cursor: pointer;
-}
-
-.heading {
-
-  font-weight: bold;
-}
-
-.mat-mdc-card-title {
-  margin: 8px 8px 8px 0;
-
-}
-
-.filter{
-  width: 100%;
-}
-

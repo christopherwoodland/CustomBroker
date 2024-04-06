@@ -11,14 +11,14 @@ import { AfterViewInit } from '@angular/core';
 })
 export class VMGraphComponent implements OnInit, AfterViewInit {
   title = '';
-
   REFRESH_INTERVAL: number = 10000;
   virtualMachines: IVirtualMachine[];
   powerOn: number = 0;
   powerOff: number = 0;
   chkYes: number = 0;
   chkNo: number = 0;
-  // Pie
+
+  // Pie Chart
   pieChartOptions: ChartOptions<'pie'> = {
     responsive: true,
     animation: true
@@ -59,6 +59,7 @@ export class VMGraphComponent implements OnInit, AfterViewInit {
 
   }
   ngOnInit(): void {
+    //DO SOMETHING
   }
   ngAfterViewInit() {
     this.retrieveVms();
